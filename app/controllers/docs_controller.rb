@@ -4,7 +4,10 @@ class DocsController < ApplicationController
 
     def index
         #in order of created new to old
-        @doc = Doc.all.order("created_at DESC")
+        #@docs = Doc.all(DECS)
+        
+        #after adding users this is how to only display current user
+        @docs = Doc.where(user_id: current_user)
     end
 
     def show
