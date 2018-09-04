@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
   get 'welcome/index'
-  root 'welcome#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+  
   resources :docs
+  authenticated :user do
+    #having 2 roots will confuse the application but you can create it and rename it as something else
+    root "docs#index", as: "authenticated_root"
+  end
+  
+  root 'welcome#index'
+  
 
 end
